@@ -7,7 +7,7 @@ import psycopg2
 def top_three_articles(c):
     c.execute("SELECT * FROM top_articles")
     response = c.fetchall()
-    print "The 3 most viewed articles are:\n"
+    print "\nThe 3 most viewed articles are:\n"
     for row in response:
         print row[0] + " --- " + str(row[1]) + " views."
 
@@ -15,7 +15,7 @@ def top_three_articles(c):
 def authors_in_order(c):
     c.execute("SELECT * FROM authors_views")
     response = c.fetchall()
-    print "Here are all authors on the site, in order of whose articles have gotten the most views over time:\n"
+    print "\nHere are all authors on the site, in order of whose articles have gotten the most views over time:\n"
     for row in response:
         print row[0] + " --- " + str(row[1]) + " views."
 
@@ -23,7 +23,7 @@ def authors_in_order(c):
 def high_failure_rate(c):
     c.execute("SELECT * FROM many_failures")
     response = c.fetchall()
-    print "These are the dates where more than 1%% of requests to the server results in an error:\n"
+    print "\nThese are the dates where more than 1%% of requests to the server results in an error:\n"
     for row in response:
         print str(row[1]) + " --- " + str(row[0] * 100) + "%% errors"
 
