@@ -25,7 +25,7 @@ def high_failure_rate(c):
     response = c.fetchall()
     print "These are the dates where more than 1%% of requests to the server results in an error:\n"
     for row in response:
-        print row[1] + " --- " + str(row[0]) + "%% errors"
+        print str(row[1]) + " --- " + str(row[0] * 100) + "%% errors"
 
 def print_report():
     db = psycopg2.connect("dbname=news")
