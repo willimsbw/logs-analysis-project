@@ -1,6 +1,6 @@
 # News site logs Analysis
 
-This program utilizes the postgreSQL database "news" from a news website to answer questions about that site's traffic. It will tell you the 3 most-visited articles, show how many views the site's authors have across all of their articles, and the days where more than 1% of requests
+This program utilizes the postgreSQL database "news" from a news website to answer questions about that site's traffic. It will tell you the 3 most-visited articles, show how many views the site's authors have across all of their articles, and the days where more than 1% of requests led to errors.
 
 ## Getting Started
 
