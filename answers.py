@@ -26,8 +26,7 @@ def high_failure_rate(c):
     response = c.fetchall()
     print "\n\nThese are the dates where more than 1{} of requests to the server results in an error:\n".format("%")
     for row in response:
-        dt_object = datetime.strptime(row[1], "%Y-%m-%d")
-        new_format_date = dt_object.strftime("%B %d, %Y")
+        new_format_date = row[1].strftime("%B %d, %Y")
         print str(new_format_date) + " --- " + str(int(row[0] * 100)) + "{} errors\n".format("%")
 
 def print_report():
