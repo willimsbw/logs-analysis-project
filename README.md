@@ -4,10 +4,33 @@ This program utilizes the postgreSQL database "news" from a new website to answe
 
 ## Getting Started
 
-The first thing to do is download answers.py, create-views.sql, and newsdata.sql. Then, you can create a database called "news" and fill it with the news website's data by running the following command on a machine with [PostgreSQL](https://www.postgresql.org/) installed:
+The first thing to do is download answers.py and create-views.sql. Then, on a machine with [PostgreSQL](https://www.postgresql.org/) installed, you can create a database called "news" containing the following tables, and fill those tables with records:
 
 ```
-psql -d news -f newsdata.sql
+CREATE TABLE articles (
+    author integer NOT NULL,
+    title text NOT NULL,
+    slug text NOT NULL,
+    lead text,
+    body text,
+    "time" timestamp with time zone DEFAULT now(),
+    id integer NOT NULL
+);
+
+CREATE TABLE authors (
+    name text NOT NULL,
+    bio text,
+    id integer NOT NULL
+);
+
+CREATE TABLE log (
+    path text,
+    ip inet,
+    method text,
+    status text,
+    "time" timestamp with time zone DEFAULT now(),
+    id integer NOT NULL
+);
 ```
 
 At that point, make sure answers.py and create-views.sql are in the same directory, and execute one of the following commands (depending on your python configuration):
@@ -39,7 +62,7 @@ pip3 psycopg2
 ## Authors
 
 * **Bryan Williams** - *Initial work* - [willimsbw](https://github.com/willimsbw)
-* Udacity's team, who provided the newsdata.sql and a pre-configured Vagrant VM
+* Udacity's team, who provided a pre-configured Vagrant VM and the database's content
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
