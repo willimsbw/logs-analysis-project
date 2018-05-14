@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import psycopg2
+from datetime import datetime
 
 #Write three functions, one for each question, and a fourth that calls them in order
 
@@ -25,7 +26,9 @@ def high_failure_rate(c):
     response = c.fetchall()
     print "\n\nThese are the dates where more than 1{} of requests to the server results in an error:\n".format("%")
     for row in response:
-        print str(row[1]) + " --- " + str(int(row[0] * 100)) + "{} errors\n".format("%")
+        dt_object = datetime.strptime(row[1], "%Y-%m-%d")
+        new_format_date = dt_object.strftime("%B %d, %Y")
+        print str(new_format_date) + " --- " + str(int(row[0] * 100)) + "{} errors\n".format("%")
 
 def print_report():
     db = psycopg2.connect("dbname=news")
