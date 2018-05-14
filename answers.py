@@ -9,7 +9,7 @@ def top_three_articles(c):
     response = c.fetchall()
     print "The 3 most viewed articles are:\n"
     for row in response:
-        print "Title: " row[0] + " --- " + str(row[1]) + " views."
+        print row[0] + " --- " + str(row[1]) + " views."
 
 #authors_in_order
 def authors_in_order(c):
@@ -17,11 +17,15 @@ def authors_in_order(c):
     response = c.fetchall()
     print "Here are all authors on the site, in order of whose articles have gotten the most views over time:\n"
     for row in response:
-        print "Author: " + row[0] + " --- " + str(row[1]) + " views."
+        print row[0] + " --- " + str(row[1]) + " views."
 
 #lots_o_failures
-def high_failure_rate(db):
-    #content goes here
+def high_failure_rate(c):
+    c.execute("SELECT * FROM many_failures")
+    response = c.fetchall()
+    print "These are the dates where more than 1%% of requests to the server results in an error:\n"
+    for row in response:
+        print row[1] + " --- " + str(row[0]) + "%% errors"
 
 def print_report():
     db = psycopg2.connect("dbname=news")
@@ -30,7 +34,7 @@ def print_report():
     c.execute(query)
     top_three_articles(c)
     authors_in_order(c)
-    #lots_o_failures
+    high_failure_rate(c)
     db.close()
 
 print_report()
