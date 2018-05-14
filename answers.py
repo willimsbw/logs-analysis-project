@@ -6,14 +6,18 @@ import psycopg2
 #top_three_articles
 def top_three_articles(c):
     c.execute("SELECT * FROM top_articles")
-    response = c.fetchall();
-    print "The 3 most viewed articles are:"
+    response = c.fetchall()
+    print "The 3 most viewed articles are:\n"
     for row in response:
-        print row[0] + " --- " + str(row[1]) + " views."
+        print "Title: " row[0] + " --- " + str(row[1]) + " views."
 
 #authors_in_order
-def authors_in_order(db):
-    #content goes here
+def authors_in_order(c):
+    c.execute("SELECT * FROM authors_views")
+    response = c.fetchall()
+    print "Here are all authors on the site, in order of whose articles have gotten the most views over time:\n"
+    for row in response:
+        print "Author: " + row[0] + " --- " + str(row[1]) + " views."
 
 #lots_o_failures
 def high_failure_rate(db):
@@ -25,7 +29,7 @@ def print_report():
     query = open("create-views.sql").read()
     c.execute(query)
     top_three_articles(c)
-    #authors_in_order
+    authors_in_order(c)
     #lots_o_failures
     db.close()
 
