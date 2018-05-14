@@ -27,6 +27,6 @@ def print_report():
     top_three_articles(c)
     #authors_in_order
     #lots_o_failures
-    #close connection
+    db.close()
 
 print_report()
