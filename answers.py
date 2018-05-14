@@ -21,8 +21,7 @@ def top_three_articles(c):
 def authors_in_order(c):
     response = get_results(c, "SELECT * FROM authors_views")
     if len(response) > 0:
-        print "\n\nHere are all authors on the site, in order of whose"
-        + " articles have gotten the most views over time:\n"
+        print "\n\nHere are all authors on the site, in order of whose articles have gotten the most views over time:\n"
         for row in response:
             print "  * " + row[0] + " --- " + str(row[1]) + " views."
     else:
@@ -32,12 +31,10 @@ def authors_in_order(c):
 def high_failure_rate(c):
     response = get_results(c, "SELECT * FROM many_failures")
     if len(response) > 0:
-        print "\n\nThese are the dates where more than 1{} of requests to the "
-        + "server resulted in an error:\n".format("%")
+        print "\n\nThese are the dates where more than 1{} of requests to the server resulted in an error:\n".format("%")
         for row in response:
             new_format_date = row[1].strftime("%B %d, %Y")
-            print "  * " + str(new_format_date) + " --- " + str(int(row[0] * 100))
-             + "{} errors\n".format("%")
+            print "  * " + str(new_format_date) + " --- " + str(int(row[0] * 100)) + "{} errors\n".format("%")
     else:
         print "\nThere were no days where more than 1% of requests resulted"
         + " in an error"
