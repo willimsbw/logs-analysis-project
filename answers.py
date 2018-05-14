@@ -24,7 +24,7 @@ def authors_in_order(c):
 def high_failure_rate(c):
     c.execute("SELECT * FROM many_failures")
     response = c.fetchall()
-    print "\n\nThese are the dates where more than 1{} of requests to the server results in an error:\n".format("%")
+    print "\n\nThese are the dates where more than 1{} of requests to the server resulted in an error:\n".format("%")
     for row in response:
         new_format_date = row[1].strftime("%B %d, %Y")
         print "  * " + str(new_format_date) + " --- " + str(int(row[0] * 100)) + "{} errors\n".format("%")
